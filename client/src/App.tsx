@@ -1,16 +1,20 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import './App.css'
-import { RoutesList } from './routes/routes'
+import Dashboard from './pages/Dashboard/Dashboard'
+import TimerComponent from './pages/Dashboard/pages/TimerComponent'
 function App() {
 
   return (
     <Router>
       <Routes>
-        {RoutesList.map((item) => {
+        {/* {RoutesList.map((item) => {
           return (
-            <Route path={item.route} element={item.element} />
+            <Route key={item.id} path={item.route} element={item.element} />
           )
-        })}
+        })} */}
+        <Route path="/dashboard" element={<Dashboard />} >
+          <Route path="/dashboard/timer" element={<TimerComponent />} />
+        </Route>
       </Routes>
 
     </Router>
