@@ -22,21 +22,9 @@ export function Sidebar({ className, playlists }: SidebarProps) {
                     <div className="space-y-1">
                         {SidebarRoutes.map((item) => {
                             return (
-                                <Button key={item.id} variant="secondary" className="w-full justify-start">
+                                <Button key={item.id} variant="link" className="w-full justify-start">
                                     <a href={item.route} className="w-full justify-start inline-flex items-center  gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            className="mr-2 h-4 w-4"
-                                        >
-                                            <circle cx="12" cy="12" r="10" />
-                                            <polygon points="10 8 16 12 10 16 10 8" />
-                                        </svg>
+                                        {item.icon}
                                         {item.name}
                                     </a>
                                 </Button>
