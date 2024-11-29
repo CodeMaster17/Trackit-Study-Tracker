@@ -1,17 +1,19 @@
-import CountUpTimer from "@/components/CountUpTimer"
+import CountUpTimer from "@/components/CountUpTimer";
 
 const TimerComponent = () => {
     return (
-        <>
-
-            <div className="rounded-2xl shadow-xl flex flex-col items-center justify-center w-1/2 px-4 py-8">
+        <div className=" grid grid-rows-2 grid-cols-1 gap-4 col-span-4 p-4">
+            {/* Timer Section */}
+            <div className="">
+                <p className="text-xl ">Count Up timer</p>
                 <CountUpTimer />
             </div>
-            {/* <div className="rounded-2xl shadow-xl flex flex-col items-center justify-center w-1/2 px-4 py-8">
-                <CountdownTimer />
-            </div> */}
-        </>
-    )
-}
+            {/* Title Section */}
+            <div className="flex items-center justify-center">
+                <p className="text-center text-2xl font-bold">Timer Component</p>
+            </div>
+        </div>
+    );
+};
 
-export default TimerComponent
+export default TimerComponent;
