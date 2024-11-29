@@ -1,8 +1,5 @@
-import Dashboard from "@/pages/Dashboard/Dashboard";
 import Bookmarks from "@/pages/Dashboard/pages/Bookmarks";
-import Home from "@/pages/Home/Home";
-import { Library } from 'lucide-react';
-import { Timer } from 'lucide-react';
+import { Library, Timer } from 'lucide-react';
 interface IRoutes {
     name: string,
     route: string,
