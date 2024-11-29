@@ -6,7 +6,7 @@ const CountdownTimer = () => {
     const [timeBetweenDates, setTimeBetweenDates] = useState(() => {
         // Initialize with the difference in seconds from 24 hours ahead
         const countToDate = new Date().setHours(new Date().getHours() + 24);
-        return Math.ceil((countToDate - new Date()) / 1000);
+        return Math.ceil((countToDate - new Date().getTime()) / 1000);
     });
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const CountdownTimer = () => {
         return () => clearInterval(interval); // Cleanup on component unmount
     }, []);
 
-    const flipAllCards = (time) => {
+    const flipAllCards = (time: number) => {
         const seconds = time % 60;
         const minutes = Math.floor(time / 60) % 60;
         const hours = Math.floor(time / 3600);
@@ -39,15 +39,15 @@ const CountdownTimer = () => {
 
     return (
         <>
-            <div className="container">
-                {["Hours", "Minutes", "Seconds"].map((segment, idx) => {
+            <div className="timerContainer">
+                {["Hours", "Minutes", "Seconds"].map((segment) => {
                     const segmentKey = segment.toLowerCase();
                     return (
-                        <div className="container-segment" key={segment}>
+                        <div className="timerContainer-segment" key={segment}>
                             <div className="segment-title">{segment}</div>
                             <div className="segment">
-                                <FlipCard number={timeValues[`${segmentKey}Tens`]} />
-                                <FlipCard number={timeValues[`${segmentKey}Ones`]} />
+                                <FlipCard number={timeValues[`${segmentKey}Tens` as keyof typeof timeValues]} />
+                                <FlipCard number={timeValues[`${segmentKey}Ones` as keyof typeof timeValues]} />
                             </div>
                         </div>
                     );

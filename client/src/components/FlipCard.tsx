@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const FlipCard = ({ number }) => {
+const FlipCard = ({ number }: { number: number }) => {
     const [currentNumber, setCurrentNumber] = useState(number);
     const [flip, setFlip] = useState(false);
 
