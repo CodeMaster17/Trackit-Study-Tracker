@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 *,
 *::after,
 *::before {
@@ -12,7 +10,7 @@
 }
 
 body {
-  background-color: #f2f1ed;
+  /* background-color: #f2f1ed; */
   /* color: #de4848; */
 }
 
@@ -80,13 +78,13 @@ body {
   }
 }
 
-.container {
+.timerContainer {
   display: flex;
   gap: 0.5em;
   justify-content: center;
 }
 
-.container-segment {
+.timerContainer-segment {
   display: flex;
   flex-direction: column;
   gap: 0.1em;
