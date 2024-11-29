@@ -2,6 +2,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import './App.css'
 import Dashboard from './pages/Dashboard/Dashboard'
 import TimerComponent from './pages/Dashboard/pages/TimerComponent'
+import ErrorRoute from './pages/ErrorRoute'
 function App() {
 
   return (
@@ -14,6 +15,7 @@ function App() {
         })} */}
         <Route path="/dashboard" element={<Dashboard />} >
           <Route path="/dashboard/timer" element={<TimerComponent />} />
+          <Route path="/dashboard/*" element={<ErrorRoute />} />
         </Route>
       </Routes>
 
