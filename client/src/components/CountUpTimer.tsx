@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import FlipCard from "./FlipCard";
 import { Pause } from 'lucide-react';
@@ -16,12 +16,15 @@ const CountUpTimer = () => {
     const [isPaused, setIsPaused] = useState<boolean>(false);
     const [showResetButton, setShowResetButton] = useState<boolean>(false);
 
+    const startTimeRef = useRef<number | null>(null);
+
     // handle start timer
     const handleStartTimer = () => {
         // start the clock
         // show pause button
         setIsRunning(true);
         setIsPaused(false);
+        startTimeRef.current = Date.now() - timeElapsed * 1000;
     }
 
     // handle reset timer
@@ -30,6 +33,7 @@ const CountUpTimer = () => {
         setIsRunning(false);
         setIsPaused(false);
         localStorage.removeItem("timeElapsed");
+        startTimeRef.current = null;
     }
 
     // handle pause timer
@@ -41,6 +45,8 @@ const CountUpTimer = () => {
     // get item from local storage
     useEffect(() => {
         const savedTime = localStorage.getItem("timeElapsed");
+
+
         if (savedTime) {
             setTimeElapsed(parseInt(savedTime, 10));
             setShowResetButton(true)
@@ -52,18 +58,23 @@ const CountUpTimer = () => {
     }, [timeElapsed]);
 
     useEffect(() => {
-        let interval: NodeJS.Timeout;
+        let animationFrame: number = 0;
+
+        const updateTimer = () => {
+            if (isRunning && startTimeRef.current !== null) {
+                const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
+                setTimeElapsed(elapsed);
+                localStorage.setItem("timeElapsed", elapsed.toString());
+            }
+            animationFrame = requestAnimationFrame(updateTimer);
+        }
         if (isRunning) {
-            interval = setInterval(() => {
-                setTimeElapsed((prevTime) => {
-                    const updatedTime = prevTime + 1;
-                    localStorage.setItem("timeElapsed", updatedTime.toString());
-                    return updatedTime;
-                });
-            }, 1000);
+            updateTimer();
+        } else {
+            cancelAnimationFrame(animationFrame);
         }
 
-        return () => clearInterval(interval); // Cleanup on component unmount
+        return () => cancelAnimationFrame(animationFrame);
     }, [isRunning]);
 
     const flipAllCards = (time: number) => {
@@ -86,11 +97,11 @@ const CountUpTimer = () => {
     return (
         <>
             <p className="text-2xl">Count Up timer</p>
-            <div className="container">
+            <div className="timerContainer">
                 {["Hours", "Minutes", "Seconds"].map((segment) => {
                     const segmentKey = segment.toLowerCase();
                     return (
-                        <div className="container-segment" key={segment}>
+                        <div className="timerContainer-segment" key={segment}>
                             <div className="segment-title">{segment}</div>
                             <div className="segment">
                                 <FlipCard number={timeValues[`${segmentKey}Tens` as keyof typeof timeValues]} />
@@ -104,7 +115,7 @@ const CountUpTimer = () => {
                 {/* start button */}
                 {!isRunning && <Button className="mt-4 w-1/2" onClick={() => handleStartTimer()}>
                     <CirclePlay />
-                    Start
+                    {isPaused ? "Resume" : "Start"}
                 </Button>}
 
                 {isRunning && <Button variant={"secondary"} className="mt-4 w-1/2" onClick={() => handlePauseTimer()}>
