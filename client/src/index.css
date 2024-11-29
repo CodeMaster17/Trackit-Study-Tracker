@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,7 +7,8 @@
 *::after,
 *::before {
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
 }
 
 body {
@@ -21,6 +23,7 @@ body {
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
   font-size: 4.25rem;
   border-radius: 0.1em;
+  font-weight: 100;
 }
 
 .top,
@@ -31,6 +34,7 @@ body {
   line-height: 1;
   padding: 0.25em;
   overflow: hidden;
+  font-weight: 100;
 }
 
 .top,
@@ -98,6 +102,7 @@ body {
 
 .segment-title {
   font-size: 1rem;
+  font-weight: 200;
 }
 
 @layer base {
