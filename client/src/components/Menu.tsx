@@ -5,9 +5,9 @@ export function Menu() {
     return (
         <Menubar className="rounded-none border-b border-none px-2 lg:px-4">
             <MenubarMenu>
-                <MenubarTrigger className="font-bold">Music</MenubarTrigger>
+                <MenubarTrigger className="font-bold">Taskit</MenubarTrigger>
                 <MenubarContent>
-                    <MenubarItem>About Music</MenubarItem>
+                    <MenubarItem>About Taskit</MenubarItem>
                     <MenubarSeparator />
                     <MenubarItem>
                         Preferences... <MenubarShortcut>⌘,</MenubarShortcut>
