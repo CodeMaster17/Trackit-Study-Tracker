@@ -19,7 +19,7 @@ const Dashboard = () => {
                     className="hidden dark:block"
                 /> */}
             </div>
-            <div className="hidden md:block">
+            <div className="hidden md:block min-h-screen">
                 <Menu />
                 <div className="border-t">
                     <div className="bg-background">
