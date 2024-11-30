@@ -3,36 +3,36 @@ import CountUpTimer from "@/components/CountUpTimer";
 export default function TimerComponent() {
     return (
         <div className="bg-gray-50">
-            <div className="mt-2 grid grid-cols-2 gap-4 sm:mt-16 lg:grid-rows-1 lg:grid-cols-3">
+            <div className="mt-2 grid grid-cols-2 gap-4 sm:mt-4 lg:grid-rows-1 lg:grid-cols-3">
 
                 {/* Top Left: Larger Box */}
                 <div className="relative row-span-2  col-span-2 bg-white" >
-                    <div className="absolute inset-px rounded-lg bg-white lg:rounded-l-[2rem]"></div>
-                    <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-l-[calc(2rem+1px) p-4">
+                    <div className="absolute inset-px rounded-lg bg-white lg:rounded-tl-[2rem]"></div>
+                    <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-tl-[calc(2rem+1px) p-4">
                         <CountUpTimer />
                     </div>
-                    <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-l-[2rem]"></div>
+                    <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-tl-[2rem]"></div>
                 </div>
 
                 {/* Top Right: Smaller Box */}
-                <div className="relative border-2 border-blue-500 col-span-1 row-span-2">
-                    <div className="absolute inset-px rounded-lg bg-white"></div>
-                    <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)]">
-                        <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                            <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 text-center">Performance</p>
-                            <p className="mt-2 max-w-lg text-sm/6 text-gray-600 text-center">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit maiores impedit.
-                            </p>
+                <div className="relative col-span-1 row-span-2  lg:rounded-tr-[2rem]">
+                    <div className="absolute inset-px rounded-lg bg-white lg:rounded-tr-[2rem]"></div>
+                    <div className="relative flex h-full flex-col gap-2 overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-tr-[2rem] px-4">
+                        <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 text-center">Performance</p>
+                        <div className="border-2 h-12 rounded-[0.5rem]">
+                            d
                         </div>
-                        <div className="flex flex-1 items-center justify-center px-8 sm:px-10 lg:pb-2">
-                            <img
-                                className="w-full max-lg:max-w-xs"
-                                src="https://tailwindui.com/plus/img/component-images/bento-03-performance.png"
-                                alt=""
-                            />
+                        <div className="border-2 h-12 rounded-[0.5rem]">
+                            d
+                        </div>
+                        <div className="border-2 h-12 rounded-[0.5rem]">
+                            d
+                        </div>
+                        <div className="border-2 h-12 rounded-[0.5rem]">
+                            d
                         </div>
                     </div>
-                    <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5"></div>
+                    <div className="pointer-events-none absolute inset-px  lg:rounded-tr-[2rem] shadow ring-1 ring-black/5"></div>
                 </div>
 
                 {/* Bottom Left: Smaller Box */}
