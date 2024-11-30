@@ -3,6 +3,8 @@ import './App.css'
 import Dashboard from './pages/Dashboard/Dashboard'
 import TimerComponent from './pages/Dashboard/pages/TimerComponent'
 import ErrorRoute from './pages/ErrorRoute'
+import Targets from './pages/Dashboard/pages/Targets'
+import Resources from './pages/Dashboard/pages/Resources'
 function App() {
 
   return (
@@ -15,6 +17,8 @@ function App() {
         })} */}
         <Route path="/dashboard" element={<Dashboard />} >
           <Route path="/dashboard/timer" element={<TimerComponent />} />
+          <Route path="/dashboard/targets" element={<Targets />} />
+          <Route path="/dashboard/resources" element={<Resources />} />
           <Route path="/dashboard/*" element={<ErrorRoute />} />
         </Route>
       </Routes>
