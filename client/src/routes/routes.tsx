@@ -33,7 +33,7 @@ export const SidebarRoutes = [
     },
     {
         name: 'Resources',
-        route: '/dashboard/bookmarks',
+        route: '/dashboard/resources',
         id: 'resources',
         element: <Bookmarks />,
         icon: <Library />
