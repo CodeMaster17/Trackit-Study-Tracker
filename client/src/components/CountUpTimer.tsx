@@ -96,7 +96,7 @@ const CountUpTimer = () => {
 
     return (
         <>
-            <div className="timerContainer flex mt-2 items-center justify-center rounded-2xl shadow-xl bg-gray-100 px-4 py-8">
+            <div className="timerContainer flex mt-2 items-center justify-center rounded-2xl  px-4 py-8">
                 {["Hours", "Minutes", "Seconds"].map((segment) => {
                     const segmentKey = segment.toLowerCase();
                     return (
