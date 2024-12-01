@@ -70,6 +70,20 @@ export default {
         } catch (err) {
             httpError(next, err, req, 500)
         }
+    },
+    getAllSessionById: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const userId = req.params.userId
+            const studySessions = await studySessionModel.find({ userId })
+
+            if (!studySessions || studySessions.length === 0) {
+                httpResponse(req, res, 400, 'User does not exist')
+            }
+
+            httpResponse(req, res, 200, 'Succesfully fetched data', studySessions)
+        } catch (err) {
+            httpError(next, err, req, 500)
+        }
     }
 }
 
