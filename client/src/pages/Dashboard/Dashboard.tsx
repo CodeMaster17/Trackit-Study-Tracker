@@ -1,5 +1,6 @@
 import { Menu } from "@/components/Menu"
 import { Sidebar } from "@/components/Sidebar"
+import ThemeToggleButton from "@/components/ThemeToggleButton"
 import { playlists } from "@/constants/playlists"
 
 import { Outlet } from "react-router-dom"
@@ -20,13 +21,16 @@ const Dashboard = () => {
                 /> */}
             </div>
             <div className="hidden md:block min-h-screen">
-                <Menu />
-                <div className="border-t">
-                    <div className="bg-background">
-                        <div className="grid lg:grid-cols-5">
+                <div className="w-full flex justify-between items-center pr-8">
+                    <Menu />
+                    <ThemeToggleButton />
+                </div>
+                <div className="border-t ">
+                    <div className="bg-background ">
+                        <div className="grid lg:grid-cols-5 ">
                             <Sidebar playlists={playlists} className="hidden lg:block" />
                             <div className="col-span-3 lg:col-span-4 lg:border-l">
-                                <div className="h-full px-4 py-6 lg:px-8">
+                                <div className="h-full px-4 py-6 lg:px-8 ">
                                     <Outlet />
                                 </div>
                             </div>

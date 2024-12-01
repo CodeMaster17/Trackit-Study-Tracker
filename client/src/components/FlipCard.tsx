@@ -16,7 +16,7 @@ const FlipCard = ({ number }: { number: number }) => {
 
     return (
         <>
-            <div className={`flip-card ${flip ? "flip" : ""}`}>
+            <div className={`flip-card dark:bg-background ${flip ? "flip" : ""}`}>
                 <div className="top">{currentNumber}</div>
                 <div className="bottom">{number}</div>
                 <div className="top-flip">{currentNumber}</div>
