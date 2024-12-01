@@ -1,8 +1,10 @@
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
 import { NextFunction, Request, Response } from 'express'
-import httpResponse from '../util/httpResponse'
+import config from '../config/config'
+import { EApplicationEnvironment } from '../constant/application'
 import responseMessage from '../constant/responseMessage'
-import httpError from '../util/httpError'
-import quicker from '../util/quicker'
+import databaseService from '../service/databaseService'
 import {
     ValidateChangePasswordBody,
     ValidateForgotPasswordBody,
@@ -22,14 +24,9 @@ import {
     IUser,
     IUserWithId
 } from '../types/userTypes'
-import databaseService from '../service/databaseService'
-import { EUserRole } from '../constant/userConstant'
-import emailService from '../service/emailService'
-import config from '../config/config'
-import logger from '../util/logger'
-import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-import { EApplicationEnvironment } from '../constant/application'
+import httpError from '../util/httpError'
+import httpResponse from '../util/httpResponse'
+import quicker from '../util/quicker'
 
 dayjs.extend(utc)
 interface IRegisterRequest extends Request {
@@ -151,26 +148,14 @@ export default {
                     lastResetAt: null
                 },
                 lastLoginAt: null,
-                role: EUserRole.USER,
                 timezone: timezone[0].name,
                 password: encryptedPassword,
-                consent
+                consent,
+                studySessions: []
             }
 
             // Create New User
             const newUser = await databaseService.registerUser(payload)
-
-            // * Send Email
-            const confirmationUrl = `${config.FRONTEND_URL}/confirmation/${token}?code=${code}`
-            const to = [emailAddress]
-            const subject = 'Confirm Your Account'
-            const text = `Hey ${name}, Please confirm your account by clicking on the link below\n\n${confirmationUrl}`
-
-            emailService.sendEmail(to, subject, text).catch((err) => {
-                logger.error(`EMAIL_SERVICE`, {
-                    meta: err
-                })
-            })
 
             // Send Response
             httpResponse(req, res, 201, responseMessage.SUCCESS, { _id: newUser._id })
@@ -203,17 +188,6 @@ export default {
 
             await user.save()
 
-            // * Account Confirmation Email
-            const to = [user.emailAddress]
-            const subject = 'Account Confirmed'
-            const text = `Your account has been confirmed`
-
-            emailService.sendEmail(to, subject, text).catch((err) => {
-                logger.error(`EMAIL_SERVICE`, {
-                    meta: err
-                })
-            })
-
             httpResponse(req, res, 200, responseMessage.SUCCESS)
         } catch (err) {
             httpError(next, err, req, 500)
@@ -238,10 +212,10 @@ export default {
                 return httpError(next, new Error(responseMessage.NOT_FOUND('user')), req, 404)
             }
 
-            // * Check if user account is confirmed
-            if (!user.accountConfirmation.status) {
-                return httpError(next, new Error(responseMessage.ACCOUNT_CONFIRMATION_REQUIRED), req, 400)
-            }
+            // // * Check if user account is confirmed
+            // if (!user.accountConfirmation.status) {
+            //     return httpError(next, new Error(responseMessage.ACCOUNT_CONFIRMATION_REQUIRED), req, 400)
+            // }
 
             // * Validate Password
             const isValidPassword = await quicker.comparePassword(password, user.password)
@@ -448,18 +422,6 @@ export default {
 
             await user.save()
 
-            // 7. Send Email
-            const resetUrl = `${config.FRONTEND_URL}/reset-password/${token}`
-            const to = [emailAddress]
-            const subject = 'Account Password Reset Requested'
-            const text = `Hey ${user.name}, Please reset your account password by clicking on the link below\n\nLink will expire within 15 Minutes\n\n${resetUrl}`
-
-            emailService.sendEmail(to, subject, text).catch((err) => {
-                logger.error(`EMAIL_SERVICE`, {
-                    meta: err
-                })
-            })
-
             httpResponse(req, res, 200, responseMessage.SUCCESS)
         } catch (err) {
             httpError(next, err, req, 500)
@@ -513,17 +475,6 @@ export default {
             user.passwordReset.lastResetAt = dayjs().utc().toDate()
             await user.save()
 
-            // * Email send
-            const to = [user.emailAddress]
-            const subject = 'Account Password Reset'
-            const text = `Hey ${user.name}, You account password has been reset successfully.`
-
-            emailService.sendEmail(to, subject, text).catch((err) => {
-                logger.error(`EMAIL_SERVICE`, {
-                    meta: err
-                })
-            })
-
             httpResponse(req, res, 200, responseMessage.SUCCESS)
         } catch (err) {
             httpError(next, err, req, 500)
@@ -564,17 +515,6 @@ export default {
             // * User update
             user.password = hashedPassword
             await user.save()
-
-            // * Email Send
-            const to = [user.emailAddress]
-            const subject = 'Password Changed'
-            const text = `Hey ${user.name}, You account password has been changed successfully.`
-
-            emailService.sendEmail(to, subject, text).catch((err) => {
-                logger.error(`EMAIL_SERVICE`, {
-                    meta: err
-                })
-            })
 
             httpResponse(req, res, 200, responseMessage.SUCCESS)
         } catch (err) {

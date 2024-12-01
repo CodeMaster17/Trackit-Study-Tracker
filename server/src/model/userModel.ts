@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 import { IUser } from '../types/userTypes'
-import { EUserRole } from '../constant/userConstant'
 
 const userSchema = new mongoose.Schema<IUser>(
     {
@@ -39,12 +38,6 @@ const userSchema = new mongoose.Schema<IUser>(
             type: String,
             required: true,
             select: false
-        },
-        role: {
-            type: String,
-            default: EUserRole.USER,
-            enum: EUserRole,
-            required: true
         },
         accountConfirmation: {
             _id: false,
@@ -88,7 +81,14 @@ const userSchema = new mongoose.Schema<IUser>(
         consent: {
             type: Boolean,
             required: true
-        }
+        },
+        studySessions: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'studySession',
+                default: []
+            }
+        ]
     },
     { timestamps: true }
 )

@@ -1,11 +1,7 @@
 import express, { Application, NextFunction, Request, Response } from 'express'
 import path from 'path'
 import router from './router/authRouter'
-// routes
-import songsRoutes from './router/songRoutes'
-import adminRoutes from './router/adminRoutes'
-import albumRoutes from './router/albumRoutes'
-import statRoutes from './router/statRoutes'
+import studySessionRouter from './router/studySessionRouter'
 
 import globalErrorHandler from './middleware/globalErrorHandler'
 import responseMessage from './constant/responseMessage'
@@ -31,10 +27,8 @@ app.use(express.static(path.join(__dirname, '../', 'public')))
 
 // Routes
 app.use('/api/v1', router)
-app.use('/api/v1/songs', songsRoutes)
-app.use('/api/v1/admin', adminRoutes)
-app.use('/api/v1/albums', albumRoutes)
-app.use('/api/v1/stats', statRoutes)
+app.use('/api/v1', studySessionRouter)
+
 // 404 Handler
 app.use((req: Request, _: Response, next: NextFunction) => {
     try {

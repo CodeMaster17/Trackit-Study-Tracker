@@ -1,5 +1,4 @@
 import { JwtPayload } from 'jsonwebtoken'
-import { EUserRole } from '../constant/userConstant'
 
 export interface IUser {
     name: string
@@ -11,7 +10,6 @@ export interface IUser {
     }
     timezone: string
     password: string
-    role: EUserRole
     accountConfirmation: {
         status: boolean
         token: string
@@ -25,6 +23,7 @@ export interface IUser {
     }
     lastLoginAt: Date | null
     consent: boolean
+    studySessions: string[]
 }
 
 export interface IUserWithId extends IUser {
