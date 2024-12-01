@@ -1,3 +1,4 @@
+import DockNavigation from "@/components/DockNavigation"
 import { Menu } from "@/components/Menu"
 import { Sidebar } from "@/components/Sidebar"
 import ThemeToggleButton from "@/components/ThemeToggleButton"
@@ -27,11 +28,12 @@ const Dashboard = () => {
                 </div>
                 <div className="border-t ">
                     <div className="bg-background ">
-                        <div className="grid lg:grid-cols-5 ">
-                            <Sidebar playlists={playlists} className="hidden lg:block" />
-                            <div className="col-span-3 lg:col-span-4 lg:border-l">
-                                <div className="h-full px-4 py-6 lg:px-8 ">
+                        <div className="grid  w-full relative">
+                            {/* <Sidebar playlists={playlists} className="hidden lg:block" /> */}
+                            <div className="w-full  lg:col-span-4 lg:border-l">
+                                <div className="w-full h-full px-4 py-6 lg:px-8 relative ">
                                     <Outlet />
+                                    <DockNavigation />
                                 </div>
                             </div>
                         </div>

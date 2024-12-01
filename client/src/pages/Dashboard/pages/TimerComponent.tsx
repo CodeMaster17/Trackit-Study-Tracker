@@ -15,8 +15,8 @@ export default function TimerComponent() {
                 </div>
 
                 {/* Top Right: Smaller Box */}
-                <div className="relative col-span-1 row-span-2  lg:rounded-tr-[2rem]dark:bg-background border-2">
-                    <div className="absolute inset-px rounded-lg bg-white lg:rounded-tr-[2rem] dark:bg-background border-2"></div>
+                <div className="relative col-span-1 row-span-2  lg:rounded-tr-[2rem]dark:bg-background ">
+                    <div className="absolute inset-px rounded-lg bg-white lg:rounded-tr-[2rem] dark:bg-background "></div>
                     <div className="relative flex h-full flex-col gap-2 overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-tr-[2rem] px-4 dark:bg-background">
                         <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 text-center">Performance</p>
                         <div className="border-2 h-12 rounded-[0.5rem]">
@@ -36,7 +36,7 @@ export default function TimerComponent() {
                 </div>
 
                 {/* Bottom Left: Smaller Box */}
-                <div className="relative border-2 border-gray-500 row-span-2 col-span-1 dark:bg-background ">
+                <div className="relative  border-gray-500 row-span-2 col-span-1 dark:bg-background ">
                     <div className="absolute inset-px rounded-lg bg-white dark:bg-background"></div>
                     <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] dark:bg-background">
                         <div className="px-8 pt-8 sm:px-10 sm:pt-10">
