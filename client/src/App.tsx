@@ -5,10 +5,12 @@ import TimerComponent from './pages/Dashboard/pages/TimerComponent'
 import ErrorRoute from './pages/ErrorRoute'
 import Targets from './pages/Dashboard/pages/Targets'
 import Resources from './pages/Dashboard/pages/Resources'
+import CustomCursor from './components/CustomCursor'
 function App() {
 
   return (
     <Router>
+      <CustomCursor />
       <Routes>
         {/* {RoutesList.map((item) => {
           return (

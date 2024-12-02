@@ -83,9 +83,9 @@ const DATA = {
 
 export default function DockNavigation() {
     return (
-        <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2">
+        <div className="fixed bottom-10 border-2 border-red left-1/2 transform -translate-x-1/2 z-10 cursor-none">
             <TooltipProvider>
-                <Dock direction="middle" className="bg-white shadow-xl">
+                <Dock direction="middle" className="bg-white shadow-xl cursor-none">
                     {DATA.navbar.map((item) => (
                         <DockIcon key={item.label}>
                             <Tooltip>

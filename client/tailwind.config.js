@@ -50,8 +50,26 @@ export default {
 					'3': 'hsl(var(--chart-3))',
 					'4': 'hsl(var(--chart-4))',
 					'5': 'hsl(var(--chart-5))'
+				},
+				borders:{
+					blue: "#DBE9FE",
 				}
-			}
+			},
+			animation: {
+				'gradient': 'gradient 8s linear infinite',
+			},
+			keyframes: {
+				'gradient': {
+					'0%, 100%': {
+						'background-size': '200% 200%',
+						'background-position': 'left center',
+					},
+					'50%': {
+						'background-size': '200% 200%',
+						'background-position': 'right center',
+					},
+				},
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

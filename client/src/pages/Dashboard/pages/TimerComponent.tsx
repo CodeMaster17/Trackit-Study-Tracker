@@ -2,37 +2,52 @@ import CountUpTimer from "@/components/CountUpTimer";
 
 export default function TimerComponent() {
     return (
-        <div className="dark:bg-background">
-            <div className="mt-2 grid grid-cols-2 gap-4 sm:mt-4 lg:grid-rows-1 lg:grid-cols-3 dark:bg-background lg:rounded-tl-[2rem] bg-white">
+        <div className="bg-gray-50 dark:bg-gray-900">
+            <div className="mt-2 grid grid-cols-2 gap-4 sm:mt-4 lg:grid-rows-1 lg:grid-cols-3  lg:rounded-tl-[2rem] bg-gray-50 dark:bg-gray-900 ">
 
                 {/* Top Left: Larger Box */}
-                <div className="relative row-span-2  col-span-2 bg-white dark:bg-background border-2 lg:rounded-[2rem]" >
-                    {/* <div className="absolute inset-px rounded-lg bg-white lg:rounded-tl-[2rem] dark:bg-background"></div> */}
-                    <div className="relative flex h-full flex-col overflow-hidden  lg:rounded-tl-[2rem] p-4 dark:bg-background">
+                <div className="relative row-span-2  col-span-2 bg-white   lg:rounded-tl-[2rem] rounded-tr-[calc(theme(borderRadius.lg)+1px)] rounded-b-[calc(theme(borderRadius.lg)+1px)] bg-gradient-to-br  from-orange-500/50 to-yellow-500/50 " >
+                    <div className="relative flex h-full flex-col overflow-hidden  lg:rounded-tl-[2rem] p-4 from-orange-500/50 to-yellow-500/50">
                         <CountUpTimer />
                     </div>
-                    {/* <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-tl-[2rem]"></div> */}
                 </div>
 
                 {/* Top Right: Smaller Box */}
-                <div className="relative col-span-1 row-span-2  lg:rounded-tr-[2rem]dark:bg-background ">
-                    <div className="absolute inset-px rounded-lg bg-white lg:rounded-tr-[2rem] dark:bg-background "></div>
-                    <div className="relative flex h-full flex-col gap-2 overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-tr-[2rem] px-4 dark:bg-background">
-                        <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 text-center">Performance</p>
-                        <div className="border-2 h-12 rounded-[0.5rem]">
+                <div className="relative col-span-1 row-span-2  lg:rounded-tr-[2rem] rounded-[calc(theme(borderRadius.lg)+1px)] bg-gradient-to-br from-[#11B8A1] to-[#0d9482] dark:from-[#11B8A1]/90 dark:to-[#0d9482]/90">
+
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#11B8A1] to-[#0d9482] dark:from-[#11B8A1]/90 dark:to-[#0d9482]/9 opacity-95 dark:opacity-90 rounded-[calc(theme(borderRadius.lg)+1px)] " />
+
+                    <div className="relative flex h-full flex-col gap-2 overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-tr-[2rem]  px-4 bg-gradient-to-br from-[#11B8A1] to-[#0d9482] dark:from-[#11B8A1]/90 dark:to-[#0d9482]/9">
+
+                        <p className="mt-2 text-lg font-medium tracking-tight text-center">
+                            Previous Sessions
+                        </p>
+                        <div className=" h-12 rounded-[0.5rem] group relative overflow-hidden bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 transition-all duration-300 hover:shadow-xl dark:hover:shadow-2xl/10" style={{
+                            animation: `fadeSlideIn 0.5s ease-out ${0 * 0.1}s both`
+                        }}>
                             d
                         </div>
-                        <div className="border-2 h-12 rounded-[0.5rem]">
+                        <div className=" h-12 rounded-[0.5rem] group relative overflow-hidden bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 transition-all duration-300 hover:shadow-xl dark:hover:shadow-2xl/10" style={{
+                            animation: `fadeSlideIn 0.5s ease-out ${1 * 0.1}s both`
+                        }}>
                             d
                         </div>
-                        <div className="border-2 h-12 rounded-[0.5rem]">
+                        <div className=" h-12 rounded-[0.5rem] group relative overflow-hidden bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 transition-all duration-300 hover:shadow-xl dark:hover:shadow-2xl/10" style={{
+                            animation: `fadeSlideIn 0.5s ease-out ${2 * 0.1}s both`
+                        }}>
                             d
                         </div>
-                        <div className="border-2 h-12 rounded-[0.5rem]">
+                        <div className=" h-12 rounded-[0.5rem] group relative overflow-hidden bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 transition-all duration-300 hover:shadow-xl dark:hover:shadow-2xl/10" style={{
+                            animation: `fadeSlideIn 0.5s ease-out ${3 * 0.1}s both`
+                        }}>
                             d
                         </div>
+
                     </div>
-                    <div className="pointer-events-none absolute inset-px  lg:rounded-tr-[2rem] shadow ring-1 ring-black/5"></div>
+                    {/* <div className={`
+                  absolute inset-0 bg-gradient-to-r ${feature.gradient}
+                  opacity-0 group-hover:opacity-5 transition-opacity duration-300
+                `} /> */}
                 </div>
 
                 {/* Bottom Left: Smaller Box */}

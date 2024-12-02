@@ -1,8 +1,6 @@
 import DockNavigation from "@/components/DockNavigation"
 import { Menu } from "@/components/Menu"
-import { Sidebar } from "@/components/Sidebar"
 import ThemeToggleButton from "@/components/ThemeToggleButton"
-import { playlists } from "@/constants/playlists"
 
 import { Outlet } from "react-router-dom"
 
@@ -21,17 +19,18 @@ const Dashboard = () => {
                     className="hidden dark:block"
                 /> */}
             </div>
-            <div className="hidden md:block min-h-screen">
+            <div className="hidden md:block min-h-screen bg-gray-50 dark:bg-gray-900">
                 <div className="w-full flex justify-between items-center pr-8">
                     <Menu />
                     <ThemeToggleButton />
                 </div>
                 <div className="border-t ">
-                    <div className="bg-background ">
-                        <div className="grid  w-full relative">
+                    {/* #121727 */}
+                    <div className="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+                        <div className="grid  w-full ">
                             {/* <Sidebar playlists={playlists} className="hidden lg:block" /> */}
-                            <div className="w-full  lg:col-span-4 lg:border-l">
-                                <div className="w-full h-full px-4 py-6 lg:px-8 relative ">
+                            <div className="w-full  lg:col-span-4 lg:border-l bg-gray-50 dark:bg-gray-900">
+                                <div className="w-full h-full px-4 py-6 lg:px-8  bg-gray-50 dark:bg-gray-900">
                                     <Outlet />
                                     <DockNavigation />
                                 </div>

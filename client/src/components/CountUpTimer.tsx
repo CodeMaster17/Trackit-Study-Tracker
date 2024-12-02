@@ -4,6 +4,7 @@ import FlipCard from "./FlipCard";
 import { Pause } from 'lucide-react';
 import { RotateCcw } from 'lucide-react';
 import { CirclePlay } from 'lucide-react';
+import GradientButton from "./utils/GradientButton";
 const CountUpTimer = () => {
 
     const [timeElapsed, setTimeElapsed] = useState<number>(() => {
@@ -110,24 +111,55 @@ const CountUpTimer = () => {
                     );
                 })}
             </div>
-            <div className="w-full flex justify-between gap-8">
+            <div className="w-full flex justify-between items-center gap-8">
                 {/* start button */}
-                {!isRunning && <Button className="mt-4 w-1/2" onClick={() => handleStartTimer()}>
+                {/* {!isRunning && <Button className="mt-4 w-1/2" onClick={() => handleStartTimer()}>
                     <CirclePlay />
                     {isPaused ? "Resume" : "Start"}
-                </Button>}
+                </Button>} */}
 
-                {isRunning && <Button variant={"secondary"} className="mt-4 w-1/2" onClick={() => handlePauseTimer()}>
+                {/* {isRunning && <Button variant={"secondary"} className="mt-4 w-1/2" onClick={() => handlePauseTimer()}>
                     <Pause />
                     Pause
-                </Button>}
+                </Button>} */}
 
 
                 {/* reset button */}
-                {showResetButton && <Button variant={"destructive"} className="mt-4 w-1/2" onClick={() => handleResetTimer()}>
+                {/* {showResetButton && <Button variant={"destructive"} className="mt-4 w-1/2" onClick={() => handleResetTimer()}>
                     <RotateCcw />
                     Reset Timer
-                </Button>}
+                </Button>} */}
+
+                {!isRunning && <GradientButton
+                    key="Start"
+                    gradient="from-orange-500 to-yellow-500"
+                    variant="primary"
+                    onClick={() => handleStartTimer()}
+                >
+                    <CirclePlay />
+                    {isPaused ? "Resume" : "Start"}
+                </GradientButton>
+                }
+                {isRunning && <GradientButton
+                    key="Pause"
+                    gradient="from-orange-500 to-yellow-500"
+                    variant="primary"
+                    onClick={() => handlePauseTimer()}
+                >
+                    <Pause />
+                    {isPaused ? "Resume" : "Start"}
+                </GradientButton>}
+
+                {showResetButton && <GradientButton
+                    key="Reset"
+                    gradient=""
+                    variant="primary"
+                    onClick={() => handleResetTimer()}
+                    className="bg-none  border-2 hover:border-black bg-transparent text-black hover:bg-transparent hover:text-black "
+                >
+                    <RotateCcw />
+                    Reset Timer
+                </GradientButton>}
             </div>
         </>
     );
