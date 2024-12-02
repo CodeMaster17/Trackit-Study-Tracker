@@ -1,0 +1,8 @@
+.custom-cursor {
+  position: absolute;
+  z-index: 20;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
